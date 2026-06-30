@@ -16,7 +16,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/cloud-mascot.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://cdn.channel.io" />
+    <link rel="preconnect" href="https://chat-static.happytalkio.com" />
     <link rel="preload" as="image" href="/cloud-mascot.webp" />
 
     <title>소액결제현금화, 3분 칼입금 | 24시간 상담 | 99.9% 승인 구름페이</title>
@@ -124,20 +124,7 @@
     </div>
 
     <script>
-      (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
-
-      var savedPhone = localStorage.getItem('grpay_phone');
-      var savedName = localStorage.getItem('grpay_name');
-
-      if (savedPhone) {
-          ChannelIO('boot', {
-            "pluginKey": "0448c670-d91c-4ccf-ac94-a5ecc1925778",
-            "memberId": savedPhone,
-            "profile": { "name": savedName, "mobileNumber": savedPhone }
-          });
-      } else {
-          ChannelIO('boot', { "pluginKey": "0448c670-d91c-4ccf-ac94-a5ecc1925778" });
-      }
+            /* 해피톡(Happytalk) 채팅 SDK */ var ht=null;(function(id,scriptSrc,callback){var prevHt=document.getElementById(id);if(prevHt)return;var d=document,tagName='script',$script=d.createElement(tagName),$element=d.getElementsByTagName(tagName)[0];$script.id=id;$script.async=true;$script.src=scriptSrc;if(callback){$script.addEventListener('load',function(e){callback(null,e);},false);}$element.parentNode.insertBefore($script,$element);})('happytalkSDK','https://chat-static.happytalkio.com/sdk/happytalk.chat.v2.min.js',function(){ht=new Happytalk({siteId:'5000101587',siteName:'구름페이',categoryId:'214568',divisionId:'214569'});});
 
       window.autoHyphen = function(target) {
           var rawValue = target.value.replace(/[^0-9]/g, '');
@@ -167,14 +154,7 @@
           }
       }
 
-      window.startConsult = function() {
-          var checkPhone = localStorage.getItem('grpay_phone');
-          if (checkPhone) {
-              ChannelIO('showMessenger');
-          } else {
-              document.getElementById('login-modal').style.display = 'flex';
-          }
-      }
+            /* 상담 버튼 → 해피톡 채팅 열기 */ window.startConsult = function() { try { if (window.ht) { if (typeof ht.openChat === 'function') { ht.openChat(); return; } if (typeof ht.open === 'function') { ht.open(); return; } if (typeof ht.show === 'function') { ht.show(); return; } } } catch (e) {} }
 
       window.closeModal = function() {
           document.getElementById('login-modal').style.display = 'none';

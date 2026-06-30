@@ -614,12 +614,12 @@ const FinalCTASection: React.FC = () => (
 const Home: React.FC = () => {
   return (
     <>
-      {/* [추가됨] SEO 설정 적용 */}
       <SEO 
-        title="소액결제현금화 업계 1위" 
-        description="고릴라티켓는 소액결제현금화, 정보이용료현금화, 신용카드현금화 전문 브랜드입니다. 24시간 상담, 3분 입금, 미납 정책 99.9% 승인을 보장합니다."
+        title="소액결제현금화 업계 1위, 3분 즉시입금"
+        description="고릴라티켓 소액결제현금화 업계 1위! SKT·KT·LGU+ 소액결제 현금화, 미납·정책 99.9% 승인, 3분 칼입금 보장. 소액결제 방법·수수료·후기 확인. 24시간 365일 상담 가능."
+        keywords="소액결제현금화,소액결제 현금화,소액결제 현금화 업체 추천,소액결제 현금화 즉시입금,미납 소액결제 현금화,소액결제 현금화 안전,휴대폰 소액결제 현금화"
+        pageType="home"
       />
-
       <HeroSection />
       <ServicesSection />
       <WhyChooseUsSection />

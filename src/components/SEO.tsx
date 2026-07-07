@@ -15,19 +15,19 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({ title, description, keywords, faqItems, pageType = 'general' }) => {
-  const defaultKeywords = "소액결제현금화,소액결제 현금화,소액결제 현금화 방법,소액결제현금화 디시,소액결제 현금화 후기,소액결제 현금화 수수료,소액결제 현금화 업체,소액결제 현금화 추천,소액결제 현금화 사이트,소액결제 방법,소액결제 한도,소액결제 한도 확인,휴대폰 소액결제 현금화,핸드폰 소액결제 현금화,SKT 소액결제 현금화,KT 소액결제 현금화,LGU 소액결제 현금화,미납 소액결제 현금화,소액결제 즉시입금,소액결제 현금화 안전,구름페이,정보이용료현금화,신용카드현금화,상품권현금화";
+  const defaultKeywords = "소액결제현금화,소액결제 현금화,소액결제 현금화 방법,소액결제현금화 디시,소액결제 현금화 후기,소액결제 현금화 수수료,소액결제 현금화 업체,소액결제 현금화 추천,소액결제 현금화 사이트,소액결제 방법,소액결제 한도,소액결제 한도 확인,휴대폰 소액결제 현금화,핸드폰 소액결제 현금화,SKT 소액결제 현금화,KT 소액결제 현금화,LGU 소액결제 현금화,미납 소액결제 현금화,소액결제 즉시입금,소액결제 현금화 안전,고릴라티켓,정보이용료현금화,신용카드현금화,상품권현금화";
   const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
   const siteUrl = "https://xn--299a64rxvbk71bjne.com";
   const canonicalUrl = `${siteUrl}${window.location.pathname}`;
-  const fullTitle = `${title} | 구름페이`;
+  const fullTitle = `${title} | 고릴라티켓`;
 
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "구름페이",
+    "name": "고릴라티켓",
     "url": siteUrl,
-    "logo": `${siteUrl}/cloud-mascot.webp`,
-    "image": `${siteUrl}/cloud-mascot.webp`,
+    "logo": `${siteUrl}/gorilla-mascot.webp`,
+    "image": `${siteUrl}/gorilla-mascot.webp`,
     "description": "소액결제현금화 업계 1위. SKT·KT·LGU+ 모든 통신사 소액결제 현금화, 3분 즉시입금, 미납 99.9% 승인, 24시간 상담.",
     "telephone": "+82-10-2138-0790",
     "openingHours": "Mo-Su 00:00-24:00",
@@ -72,14 +72,14 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, faqItems, pageT
       <meta property="og:locale" content="ko_KR" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:site_name" content="구름페이" />
-      <meta property="og:image" content={`${siteUrl}/cloud-mascot.webp`} />
+      <meta property="og:site_name" content="고릴라티켓" />
+      <meta property="og:image" content={`${siteUrl}/gorilla-mascot.webp`} />
       <meta property="og:url" content={canonicalUrl} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteUrl}/cloud-mascot.webp`} />
+      <meta name="twitter:image" content={`${siteUrl}/gorilla-mascot.webp`} />
 
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}

@@ -16,7 +16,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/gorilla-mascot.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://chat-static.happytalkio.com" />
+    <link rel="preconnect" href="https://cdn.channel.io" />
     <link rel="preload" as="image" href="/gorilla-mascot.webp" />
 
     <title>소액결제현금화, 3분 칼입금 | 24시간 상담 | 99.9% 승인 고릴라티켓</title>
@@ -124,7 +124,10 @@
     </div>
 
     <script>
-            /* 해피톡(Happytalk) 채팅 SDK */ var ht=null;(function(id,scriptSrc,callback){var prevHt=document.getElementById(id);if(prevHt)return;var d=document,tagName='script',$script=d.createElement(tagName),$element=d.getElementsByTagName(tagName)[0];$script.id=id;$script.async=true;$script.src=scriptSrc;if(callback){$script.addEventListener('load',function(e){callback(null,e);},false);}$element.parentNode.insertBefore($script,$element);})('happytalkSDK','https://chat-static.happytalkio.com/sdk/happytalk.chat.v2.min.js',function(){ht=new Happytalk({siteId:'5000101587',siteName:'고릴라티켓',categoryId:'214568',divisionId:'214569'});});
+            /* 채널톡(ChannelTalk) 채팅 SDK */
+      var CHANNEL_PLUGIN_KEY = "bf1a4d48-5136-4240-b91e-34c143a98ed0";
+      (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+      function bootChannelAndShow(name, phone){ try { ChannelIO('shutdown'); } catch(e){} ChannelIO('boot', { "pluginKey": CHANNEL_PLUGIN_KEY, "hideChannelButtonOnBoot": true, "memberId": phone || undefined, "profile": (name || phone) ? { "name": name || undefined, "mobileNumber": phone || undefined } : undefined }, function(error, user){ ChannelIO('showMessenger'); }); }
 
       window.autoHyphen = function(target) {
           var rawValue = target.value.replace(/[^0-9]/g, '');
@@ -154,7 +157,17 @@
           }
       }
 
-            /* 상담 버튼 → 해피톡 채팅 열기 */ window.startConsult = function() { try { if (window.ht) { if (typeof ht.openChat === 'function') { ht.openChat(); return; } if (typeof ht.open === 'function') { ht.open(); return; } if (typeof ht.show === 'function') { ht.show(); return; } } } catch (e) {} }
+            /* 상담 버튼 → 채널톡 채팅 열기 (최초 1회 이름/전화 입력) */
+      window.startConsult = function() {
+          var savedName = localStorage.getItem('grpay_name');
+          var savedPhone = localStorage.getItem('grpay_phone');
+          if (savedName && savedPhone) {
+              bootChannelAndShow(savedName, savedPhone);
+          } else {
+              var modal = document.getElementById('login-modal');
+              if (modal) { modal.style.display = 'flex'; }
+          }
+      }
 
       window.closeModal = function() {
           document.getElementById('login-modal').style.display = 'none';
@@ -171,17 +184,8 @@
           var cleanPhone = phone.replace(/-/g, '');
           localStorage.setItem('grpay_name', name);
           localStorage.setItem('grpay_phone', cleanPhone);
-          ChannelIO('shutdown');
-          setTimeout(function(){
-              ChannelIO('boot', {
-                  "pluginKey": "0448c670-d91c-4ccf-ac94-a5ecc1925778",
-                  "memberId": cleanPhone,
-                  "profile": { "name": name, "mobileNumber": cleanPhone }
-              }, function(error, user) {
-                  closeModal();
-                  ChannelIO('showMessenger');
-              });
-          }, 100);
+          closeModal();
+          bootChannelAndShow(name, cleanPhone);
       }
     </script>
   </body>

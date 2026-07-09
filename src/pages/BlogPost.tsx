@@ -39,6 +39,24 @@ const BlogPost: React.FC = () => {
         description={postDescription}
         keywords={post.fields.tags ? post.fields.tags.join(", ") : undefined}
       />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.fields.title,
+          "description": postDescription,
+          "keywords": post.fields.tags ? post.fields.tags.join(", ") : undefined,
+          "datePublished": post.fields.date,
+          "dateModified": post.fields.date,
+          "author": { "@type": "Organization", "name": "고릴라티켓" },
+          "publisher": {
+            "@type": "Organization",
+            "name": "고릴라티켓",
+            "logo": { "@type": "ImageObject", "url": "https://xn--299a64rxvbk71bjne.com/gorilla-mascot.webp" }
+          },
+          "mainEntityOfPage": typeof window !== "undefined" ? window.location.href : undefined,
+        })}
+      </script>
       <div className="min-h-screen bg-gray-50">
         <section className="bg-gradient-to-br from-purple-50 to-purple-100 py-12 md:py-20">
           <div className="container mx-auto px-4">
